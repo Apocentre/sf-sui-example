@@ -1,0 +1,24 @@
+specVersion: v0.1.0
+package:
+  name: "sf_modules"
+  version: v0.1.0
+
+protobuf:
+  files:
+    - sui_coin.proto
+  importPaths:
+    - ../protos/proto
+
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: ../target/wasm32-unknown-unknown/release/sf_modules.wasm
+
+modules:
+  - name: map_create_currency
+    kind: map
+    initialBlock: 0
+    inputs:
+      - source: sui.checkpoint.v1.CheckpointData
+    output:
+      type: proto:sui_example.Coin

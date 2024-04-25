@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package sui_coin_example;
+
+message Coins {
+  repeated Coin list = 1;
+}
+
+message Coin {
+  string id = 1;
+  string creator = 2;
+  string coin_type = 3;
+  uint32 decimals = 4;
+  string symbol = 5;
+  string name = 6;
+  string description = 7;
+  optional string icon_url = 8;
+}
+
