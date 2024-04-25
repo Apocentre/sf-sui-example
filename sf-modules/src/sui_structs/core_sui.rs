@@ -1,4 +1,4 @@
-use std::{str};
+use std::str;
 use serde::Deserialize;
 
 #[derive(Deserialize)]
