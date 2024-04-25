@@ -7,11 +7,13 @@ pub struct CheckpointData {
     pub transactions: ::prost::alloc::vec::Vec<Transaction>,
     #[prost(message, repeated, tag = "3")]
     pub events: ::prost::alloc::vec::Vec<IndexedEvent>,
-    #[prost(message, repeated, tag = "4")]
-    pub tx_indices: ::prost::alloc::vec::Vec<TxIndex>,
+    #[prost(message, optional, tag = "4")]
+    pub object_change: ::core::option::Option<TransactionObjectChange>,
     #[prost(message, repeated, tag = "5")]
+    pub tx_indices: ::prost::alloc::vec::Vec<TxIndex>,
+    #[prost(message, repeated, tag = "6")]
     pub display_updates: ::prost::alloc::vec::Vec<StoredDisplay>,
-    #[prost(message, optional, tag = "6")]
+    #[prost(message, optional, tag = "7")]
     pub packages: ::core::option::Option<IndexedPackage>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -654,10 +656,8 @@ pub struct IndexedObject {
     pub object: ::core::option::Option<Object>,
     #[prost(string, optional, tag = "8")]
     pub coin_type: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(uint64, tag = "9")]
-    pub coin_balance: u64,
-    #[prost(message, optional, tag = "10")]
-    pub df_info: ::core::option::Option<DynamicFieldInfo>,
+    #[prost(uint64, optional, tag = "9")]
+    pub coin_balance: ::core::option::Option<u64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

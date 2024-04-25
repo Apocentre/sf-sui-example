@@ -1,6 +1,6 @@
 use protos::pb::sui::{CheckpointData, Created};
 
-pub fn get_objects_created(checkpoint_data: CheckpointData) -> Vec<Created> {
+pub fn get_created_objects(checkpoint_data: &CheckpointData) -> Vec<Created> {
   let mut created_objects = vec![];
 
   checkpoint_data.transactions.iter().for_each(|tx| {

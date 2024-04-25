@@ -4,3 +4,5 @@ members = [
   "sf-modules",
   "coin-sink",
 ]
+
+resolver = "2"
