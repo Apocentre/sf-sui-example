@@ -11,18 +11,11 @@ use std::{
 };
 use tokio::time::sleep;
 use tokio_retry::strategy::ExponentialBackoff;
-use protos::{
-  pb::{
-    sf::{
-      // firehose::Request,
-      substreams::{
-        rpc::v2::{
-          BlockScopedData, Response, response, Request
-        },
-        v1::{Modules}
-      }
-    },
+use protos::pb::sf::substreams::{
+  rpc::v2::{
+    BlockScopedData, Response, response, Request
   },
+  v1::Modules,
 };
 use super::substreams::SubstreamsEndpoint;
 

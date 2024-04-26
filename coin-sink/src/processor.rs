@@ -1,6 +1,6 @@
 use std::{sync::Arc, fs};
 use eyre::Result;
-use log::{info};
+use log::info;
 use futures::StreamExt;
 use protos::pb::{
   sf::substreams::{v1::{Package, Module}, rpc::v2::MapModuleOutput},
