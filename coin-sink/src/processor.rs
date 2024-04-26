@@ -62,7 +62,7 @@ impl Processor {
           .collect::<Vec<MapModuleOutput>>();
 
           for output in outputs {
-            println!("{:?}", output);
+            // println!("{:?}", output);
             
             if let Some(coins) = unwrap_data(output) {
               for coin in coins.list {
