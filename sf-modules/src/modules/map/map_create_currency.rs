@@ -1,33 +1,30 @@
 use eyre::Result;
 use protos::pb::{
-  sui::{
-    CheckpointData, object_status, object_type, move_object_type, sui_raw_data, type_tag, StructTag,
-    CheckpointTransactionBlockResponse, sui_transaction_block_data,
-  },
+  sui::CheckpointData,
   sui_coin_example::{Coins, Coin},
 };
-use crate::sui_structs::coin::CoinMetadata;
 
-fn is_create_coin_metadata_object(tag: &StructTag) -> bool {
-  tag.address == "0000000000000000000000000000000000000000000000000000000000000002"
-  && tag.module == "coin"
-  && tag.name == "CoinMetadata"
-}
+// fn is_create_coin_metadata_object(tag: &StructTag) -> bool {
+//   tag.address == "0000000000000000000000000000000000000000000000000000000000000002"
+//   && tag.module == "coin"
+//   && tag.name == "CoinMetadata"
+// }
 
-fn get_tx_sender(transaction_block: &[CheckpointTransactionBlockResponse], digest: &str) -> String {
-  let tx = transaction_block.iter().find(|tb| tb.digest == digest).unwrap();
-  let tx_block_data =  tx.transaction.as_ref().unwrap().data.as_ref().unwrap().sui_transaction_block_data.as_ref().unwrap();
+// fn get_tx_sender(transaction_block: &[CheckpointTransactionBlockResponse], digest: &str) -> String {
+//   let tx = transaction_block.iter().find(|tb| tb.digest == digest).unwrap();
+//   let tx_block_data =  tx.transaction.as_ref().unwrap().data.as_ref().unwrap().sui_transaction_block_data.as_ref().unwrap();
   
-  match tx_block_data {
-    sui_transaction_block_data::SuiTransactionBlockData::V1(tx_block_data) => tx_block_data.sender.clone(),
-  }
-}
+//   match tx_block_data {
+//     sui_transaction_block_data::SuiTransactionBlockData::V1(tx_block_data) => tx_block_data.sender.clone(),
+//   }
+// }
 
 // The sui coin is created in the Genesis block but not via a function call to the create_currency functions. So
 // We have to manually capture it though the object changes
 pub fn create_sui_coin(checkpoint_data: CheckpointData) -> Result<Vec<Coin>> {
-  let mut coins = vec![];
+  let coins = vec![];
   let coins_created = checkpoint_data.object_change
+  .as_ref()
   .unwrap()
   .changed_objects
   .iter()
@@ -35,7 +32,7 @@ pub fn create_sui_coin(checkpoint_data: CheckpointData) -> Result<Vec<Coin>> {
   .collect::<Vec<_>>();
 
   for coin_created in coins_created {
-    
+    println!("{:?}", coin_created);
   }
 
   // for object_change in checkpoint_data.object_change.unwrap().changed_objects {
