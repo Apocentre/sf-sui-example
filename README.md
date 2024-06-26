@@ -1,4 +1,4 @@
-# sf-sui-example
+# substreams-sui-example
 This repository show cases consumption of an Sui Substreams. More specifically, we will index all Coins created on Sui mainnet.
 
 Build and package hanlers
